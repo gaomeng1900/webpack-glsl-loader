@@ -1,6 +1,6 @@
 {
-  "name": "webpack-glsl-loader",
-  "version": "1.0.1",
+  "name": "@simon.gm/webpack-glsl-loader",
+  "version": "0.0.4",
   "description": "A webpack loader for glsl shaders - includes support for nested imports.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/grieve/webpack-glsl-loader.git"
+    "url": "https://github.com/gaomeng1900/webpack-glsl-loader"
   },
   "keywords": [
     "glsl",
@@ -19,10 +19,10 @@
     "import",
     "include"
   ],
-  "author": "Ryan Grieve <me@ryangrieve.com> (http://ryangrieve.com)",
+  "author": "Simon.gaomeng",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/grieve/webpack-glsl-loader/issues"
+    "url": "https://github.com/gaomeng1900/webpack-glsl-loader/issues"
   },
-  "homepage": "https://github.com/grieve/webpack-glsl-loader#readme"
+  "homepage": "https://github.com/gaomeng1900/webpack-glsl-loader#readme"
 }

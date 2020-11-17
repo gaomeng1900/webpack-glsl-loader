@@ -6,16 +6,35 @@ var path = require('path');
 
 function parse(loader, source, context, cb) {
     var imports = [];
-    var importPattern = /@import ([.\/\w_-]+);/gi;
-    var match = importPattern.exec(source);
 
-    while (match != null) {
-        imports.push({
-            key: match[1],
-            target: match[0],
-            content: ''
-        });
-        match = importPattern.exec(source);
+    // lagecy
+    {
+        var importPattern = /@import ([.\/\w_-]+);/gi;
+        var match = importPattern.exec(source);
+    
+        while (match != null) {
+            imports.push({
+                key: match[1],
+                target: match[0],
+                content: ''
+            });
+            match = importPattern.exec(source);
+        }
+    }
+
+    // added
+    {
+        var importPattern = /#import <([.\/\w_-]+)>/gi;
+        var match = importPattern.exec(source);
+    
+        while (match != null) {
+            imports.push({
+                key: match[1],
+                target: match[0],
+                content: ''
+            });
+            match = importPattern.exec(source);
+        }
     }
 
     processImports(loader, source, context, imports, cb);
@@ -27,6 +46,12 @@ function processImports(loader, source, context, imports, cb) {
     }
 
     var imp = imports.pop();
+
+    // 自动读取当前目录
+    // syntactic sugar for current folder.
+    if(!imp.key.startsWith('.') && !imp.key.startsWith('/') ) {
+        imp.key = './' + imp.key
+    }
 
     loader.resolve(context, imp.key + '.glsl', function(err, resolved) {
         if (err) {
